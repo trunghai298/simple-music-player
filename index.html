@@ -1,11 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
   <head>
-    <title>New Document</title>
+    <title>Love youuu</title>
     <meta name="Generator" content="EditPlus" />
     <meta name="Author" content="" />
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
+
+    <link rel="stylesheet" href="./style.css" />
     <style>
       html,
       body {
@@ -17,31 +19,178 @@
       canvas {
         position: absolute;
         width: 100%;
-        height: 100%;
+        height: 80%;
       }
       h1 {
         color: white;
         text-align: center;
-        margin-top: 20px;
         font-family: courier, arial, helvetica;
+        position: absolute;
+        font-size: 42px;
+        top: 10%;
+        right: 50%;
+        transform: translate(50%, 0);
+      }
+
+      #player {
+        position: absolute;
+        box-sizing: border-box;
+        bottom: 50px;
+        padding: 50px;
+        background-color: #cdcecd;
+        width: 90%;
+        max-width: 800px;
+        min-width: 550px;
+        right: 50%;
+        transform: translate(50%, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+        z-index: 9999;
+      }
+
+      @media (min-width: 300px) and (orientation: portrait) {
+        #player {
+          flex-direction: column;
+        }
+        .song-name {
+          font-size: 4rem;
+        }
+        .current-time,
+        .duration-time {
+          font-size: 2.5rem;
+        }
+        .author {
+          font-size: 3rem !important;
+        }
+        .back {
+          margin-right: 3rem;
+        }
+        .forward {
+          margin-left: 3rem;
+        }
+        .back svg,
+        .forward svg {
+          width: 5rem;
+          height: 5rem;
+        }
+        .play-song {
+          width: 10rem;
+          height: 10rem;
+        }
+        .play-song svg {
+          width: 7rem;
+          height: 7rem;
+        }
+      }
+
+      #song-thumbnail {
+        width: 250;
+        height: 250;
+        border-radius: 50%;
+        object-fit: cover;
       }
     </style>
   </head>
 
   <body>
     <h1>I LOVE YOU</h1>
+
+    <div id="player">
+      <div class="thumbnail-song">
+        <img id="song-thumbnail" src="./assets/IMG_1476.JPG" alt="" />
+      </div>
+      <!-- <img src="./assets/IMG_1479.JPG" alt="" />
+      <img src="./assets/IMG_1477.JPG" alt="" />
+      <img src="./assets/IMG_1480.JPG" alt="" /> -->
+      <div class="music-content">
+        <section class="music-content-box">
+          <div class="content-wrapper">
+            <div class="info-song">
+              <p class="song-name">INI - Eluveitie</p>
+              <p class="author">Eluvi</p>
+            </div>
+          </div>
+        </section>
+        <audio id="audio"></audio>
+        <div class="bar-song">
+          <span class="current-time">00:00</span>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <span class="duration-time">03:22</span>
+        </div>
+        <div class="song-footer">
+          <button class="back">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-arrow-left"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+              />
+            </svg>
+          </button>
+          <button class="play-song">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              fill="currentColor"
+              class="fas bi-play"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
+              />
+            </svg>
+          </button>
+          <button class="forward">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-arrow-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="playlist-box">
+        <div class="header">
+          <button class="button go-home">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="text"><p>Playlist</p></div>
+        </div>
+        <div class="list-song"></div>
+      </div>
+    </div>
     <canvas id="pinkboard"></canvas>
+
+    <script src="./music.js"></script>
+
     <script>
       /*
        * Settings
        */
       var settings = {
         particles: {
-          length: 500, // maximum amount of particles
-          duration: 2, // particle duration in sec
-          velocity: 100, // particle velocity in pixels/sec
+          length: 450, // maximum amount of particles
+          duration: 3, // particle duration in sec
+          velocity: 150, // particle velocity in pixels/sec
           effect: -0.75, // play with this for a nice effect
-          size: 30, // particle size in pixels
+          size: 20, // particle size in pixels
         },
       };
 
