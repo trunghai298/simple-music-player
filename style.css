@@ -74,6 +74,9 @@ button {
   margin-top: 1.25rem;
   margin-bottom: 2rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .song-name {
   color: #524850;
@@ -97,7 +100,7 @@ button {
   overflow: hidden;
   position: relative;
   border-radius: 5px;
-  background: #65fcce;
+  background: #000;
   cursor: pointer;
 }
 .progress-bar {
@@ -106,7 +109,7 @@ button {
   left: 0;
   width: 0;
   height: 100%;
-  background-color: rgb(243 60 110);
+  background-color: #fff;
 }
 
 .song-footer {
@@ -142,11 +145,24 @@ i {
 .play-song i.fa-play {
   margin-left: 5px;
 }
+.music-header {
+  display: flex;
+}
 .play-list {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: flex-end;
+  font-weight: 1.8rem;
+  font-weight: 700;
+  color: #524850;
+  margin-bottom: 3rem;
+}
+.lyrics {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
   font-weight: 1.8rem;
   font-weight: 700;
   color: #524850;
@@ -171,7 +187,28 @@ i {
   transform: scale(1.1);
   transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
+.lyrics-box {
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  border-radius: 10px;
+  padding: 3rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
 .playlist-box.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.lyrics-box.active {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
@@ -180,8 +217,16 @@ i {
 /* list song */
 .list-song {
   overflow-y: auto;
-  height: 30rem;
+  height: 90%;
   padding: 1rem;
+}
+.song-lyrics {
+  overflow-y: auto;
+  height: 90%;
+  padding: 1rem;
+}
+.song-lyrics .lyrics {
+  justify-content: center;
 }
 .list-song .song-info {
   display: flex;
@@ -220,6 +265,10 @@ i {
   position: relative;
   margin-bottom: 3rem;
 }
+.lyrics-box .header {
+  position: relative;
+  margin-bottom: 3rem;
+}
 .header .text {
   position: absolute;
   top: 0;
@@ -228,4 +277,16 @@ i {
   font-size: 1.8rem;
   font-weight: 700;
   color: rgb(53, 53, 53);
+}
+.lyrics span {
+  word-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+}
+
+.song-small-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 10px;
 }
