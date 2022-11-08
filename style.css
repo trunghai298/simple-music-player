@@ -197,6 +197,9 @@ i {
   background: rgb(212, 212, 212);
   border-color: transparent;
 }
+.hide {
+  display: none;
+}
 .left {
   pointer-events: none;
   flex: 1 0 70%;

@@ -114,8 +114,8 @@ class UI {
     console.log("play song");
     musicContent.classList.add("playing");
     thumbnailSong.style.animationPlayState = "running";
-    // btnPlay.querySelector(".fas").classList.remove("fa-play");
-    // btnPlay.querySelector(".fas").classList.add("fa-pause");
+    btnPlay.querySelector(".pause").classList.remove("hide");
+    btnPlay.querySelector(".play").classList.add("hide");
 
     audio.play();
   }
@@ -123,8 +123,8 @@ class UI {
   pauseSong() {
     musicContent.classList.remove("playing");
     // thumbnailSong.style.animationPlayState = "paused";
-    btnPlay.querySelector(".fas").classList.add("fa-play");
-    btnPlay.querySelector(".fas").classList.remove("fa-pause");
+    btnPlay.querySelector(".play").classList.remove("hide");
+    btnPlay.querySelector(".pause").classList.add("hide");
 
     audio.pause();
   }
