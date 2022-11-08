@@ -19,7 +19,7 @@
       canvas {
         position: absolute;
         width: 100%;
-        height: 60%;
+        height: 70%;
       }
       h1 {
         color: white;
@@ -35,8 +35,8 @@
       #player {
         position: absolute;
         box-sizing: border-box;
-        bottom: 20%;
-        padding: 50px;
+        bottom: 0;
+        padding: 20px;
         background-color: #cdcecd;
         width: 90%;
         max-width: 800px;
@@ -53,6 +53,12 @@
       @media (min-width: 300px) and (orientation: portrait) {
         #player {
           flex-direction: column;
+          padding: 50px;
+          bottom: 15%;
+        }
+        #song-thumbnail {
+          width: 280px;
+          height: 280px;
         }
         .song-name {
           font-size: 4rem;
@@ -86,8 +92,8 @@
       }
 
       #song-thumbnail {
-        width: 250;
-        height: 250;
+        width: 200;
+        height: 200;
         border-radius: 50%;
         object-fit: cover;
       }
