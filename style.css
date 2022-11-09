@@ -12,7 +12,22 @@ body {
   padding: 5rem 0;
   font-size: 1.6rem;
   min-height: 100vh;
-  background: #f5e0e5;
+  background: #000;
+}
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+}
+h1 {
+  color: white;
+  text-align: center;
+  font-family: courier, arial, helvetica;
+  position: absolute;
+  font-size: 42px;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%, 0);
 }
 button {
   outline: none;
@@ -66,11 +81,10 @@ button {
     transform: rotate(360deg);
   }
 }
-.state {
-  color: rgb(247, 51, 51);
-  font-size: 1.8rem;
+.display-flex {
+  flex-direction: column;
 }
-.info-song {
+.song-item {
   margin-top: 1.25rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -130,6 +144,7 @@ button {
 .play-song {
   width: 5.5rem;
   height: 5.5rem;
+  min-width: 5.5rem;
   margin: 0 2rem;
   background: #ffffff;
   color: #736570;
@@ -156,7 +171,6 @@ i {
   font-weight: 1.8rem;
   font-weight: 700;
   color: #524850;
-  margin-bottom: 3rem;
 }
 .lyrics {
   display: flex;
@@ -166,7 +180,6 @@ i {
   font-weight: 1.8rem;
   font-weight: 700;
   color: #524850;
-  margin-bottom: 3rem;
 }
 .play-list i {
   margin-left: 1rem;
@@ -224,6 +237,7 @@ i {
   overflow-y: auto;
   height: 90%;
   padding: 1rem;
+  margin-top: 60px;
 }
 .song-lyrics .lyrics {
   justify-content: center;
@@ -289,4 +303,103 @@ i {
   height: 50px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+#player {
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 0;
+  padding: 20px;
+  background-color: #cdcecd;
+  width: 90%;
+  max-width: 800px;
+  min-width: 550px;
+  right: 50%;
+  transform: translate(50%, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  z-index: 99;
+}
+
+.bi-music-note-list {
+  margin-left: 10px;
+}
+
+.song-name-lyric {
+  width: 80%;
+  text-align: center;
+}
+
+.song-title {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.song-author {
+  font-size: 1.5rem;
+  font-weight: lighter;
+  margin-top: 8px;
+}
+
+@media (min-width: 300px) and (orientation: portrait) {
+  #player {
+    flex-direction: column;
+    padding: 50px;
+    bottom: 15%;
+  }
+  #song-thumbnail {
+    width: 280px;
+    height: 280px;
+  }
+  .song-name {
+    font-size: 4rem;
+  }
+  .current-time,
+  .duration-time {
+    font-size: 2.5rem;
+  }
+  .author {
+    font-size: 3rem !important;
+  }
+  .back {
+    margin-right: 3rem;
+  }
+  .forward {
+    margin-left: 3rem;
+  }
+  .back svg,
+  .forward svg {
+    width: 5rem;
+    height: 5rem;
+  }
+  .play-song {
+    width: 10rem;
+    height: 10rem;
+    min-width: 10rem;
+  }
+  .play-song svg {
+    width: 7rem;
+    height: 7rem;
+  }
+  .play-list,
+  .lyrics,
+  .song-title {
+    font-size: 3rem;
+  }
+  .song-author {
+    font-size: 2.5rem;
+  }
+  .author {
+    display: none;
+  }
+}
+
+#song-thumbnail {
+  width: 200;
+  height: 200;
+  border-radius: 50%;
+  object-fit: cover;
 }

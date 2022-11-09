@@ -8,104 +8,6 @@
     <meta name="Description" content="" />
 
     <link rel="stylesheet" href="./style.css" />
-    <style>
-      html,
-      body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        background: #000;
-      }
-      canvas {
-        position: absolute;
-        width: 100%;
-        height: 70%;
-      }
-      h1 {
-        color: white;
-        text-align: center;
-        font-family: courier, arial, helvetica;
-        position: absolute;
-        font-size: 42px;
-        top: 10%;
-        right: 50%;
-        transform: translate(50%, 0);
-      }
-
-      #player {
-        position: absolute;
-        box-sizing: border-box;
-        bottom: 0;
-        padding: 20px;
-        background-color: #cdcecd;
-        width: 90%;
-        max-width: 800px;
-        min-width: 550px;
-        right: 50%;
-        transform: translate(50%, 0);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 20px;
-        z-index: 9999;
-      }
-
-      .bi-music-note-list {
-        margin-left: 10px;
-      }
-
-      @media (min-width: 300px) and (orientation: portrait) {
-        #player {
-          flex-direction: column;
-          padding: 50px;
-          bottom: 15%;
-        }
-        #song-thumbnail {
-          width: 280px;
-          height: 280px;
-        }
-        .song-name {
-          font-size: 4rem;
-        }
-        .current-time,
-        .duration-time {
-          font-size: 2.5rem;
-        }
-        .author {
-          font-size: 3rem !important;
-        }
-        .back {
-          margin-right: 3rem;
-        }
-        .forward {
-          margin-left: 3rem;
-        }
-        .back svg,
-        .forward svg {
-          width: 5rem;
-          height: 5rem;
-        }
-        .play-song {
-          width: 10rem;
-          height: 10rem;
-        }
-        .play-song svg {
-          width: 7rem;
-          height: 7rem;
-        }
-        .play-list,
-        .lyrics {
-          font-size: 3rem;
-        }
-      }
-
-      #song-thumbnail {
-        width: 200;
-        height: 200;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    </style>
   </head>
 
   <body>
@@ -119,9 +21,22 @@
       <img src="./assets/IMG_1477.JPG" alt="" />
       <img src="./assets/IMG_1480.JPG" alt="" /> -->
       <div class="music-content">
-        <div class="music-header">
+        <section class="music-content-box">
+          <div class="content-wrapper">
+            <div class="song-item display-flex">
+              <p class="song-name">INI - Eluveitie</p>
+              <p class="author">Eluvi</p>
+            </div>
+          </div>
+        </section>
+        <audio id="audio"></audio>
+        <div class="bar-song">
+          <span class="current-time">00:00</span>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <span class="duration-time">03:22</span>
+        </div>
+        <div class="song-footer">
           <button class="lyrics">
-            Lyrics
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -135,45 +50,6 @@
               />
             </svg>
           </button>
-          <button class="play-list">
-            Playlist
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              class="bi bi-music-note-list"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"
-              />
-              <path fill-rule="evenodd" d="M12 3v10h-1V3h1z" />
-              <path
-                d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"
-              />
-            </svg>
-          </button>
-        </div>
-        <section class="music-content-box">
-          <div class="content-wrapper">
-            <div class="info-song">
-              <p class="song-name">INI - Eluveitie</p>
-              <p class="author">Eluvi</p>
-            </div>
-          </div>
-        </section>
-        <audio id="audio"></audio>
-        <div class="bar-song">
-          <span class="current-time">00:00</span>
-          <div class="progress"><div class="progress-bar"></div></div>
-          <span class="duration-time">03:22</span>
-        </div>
-        <div class="song-footer">
           <button class="back">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -231,54 +107,76 @@
               />
             </svg>
           </button>
-        </div>
-      </div>
-      <div class="playlist-box">
-        <div class="header">
-          <button class="button go-home">
+          <button class="play-list">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
               height="25"
               fill="currentColor"
-              class="bi bi-house-heart"
+              class="bi bi-music-note-list"
               viewBox="0 0 16 16"
             >
               <path
-                d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"
+                d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"
+              />
+              <path fill-rule="evenodd" d="M12 3v10h-1V3h1z" />
+              <path
+                d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"
               />
               <path
-                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"
+                fill-rule="evenodd"
+                d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"
               />
             </svg>
           </button>
-          <div class="text"><p>Playlist</p></div>
         </div>
-        <div class="list-song"></div>
       </div>
-      <div class="lyrics-box">
-        <div class="header">
-          <button class="button close-lyrics">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              class="bi bi-house-heart"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"
-              />
-              <path
-                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"
-              />
-            </svg>
-          </button>
-          <div class="text"><p>Lyrics</p></div>
-        </div>
-        <div class="song-lyrics"></div>
+    </div>
+    <div class="playlist-box">
+      <div class="header">
+        <button class="button go-home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-house-heart"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"
+            />
+            <path
+              d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"
+            />
+          </svg>
+        </button>
+        <div class="text"><p>Playlist</p></div>
       </div>
+      <div class="list-song"></div>
+    </div>
+    <div class="lyrics-box">
+      <div class="header">
+        <button class="button close-lyrics">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-x-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+        </button>
+        <div class="text song-name-lyric"><p>Lyrics</p></div>
+      </div>
+      <div class="song-lyrics"></div>
     </div>
     <canvas id="pinkboard"></canvas>
     <script src="./music.js"></script>

@@ -17,12 +17,13 @@ const lyrics = document.querySelector(".song-lyrics");
 
 const thumbnailSong = document.querySelector(".thumbnail-song img");
 const songTb = document.getElementById("song-thumbnail");
-const nameSong = document.querySelector(".info-song .song-name");
-const author = document.querySelector(".info-song .author");
+const nameSong = document.querySelector(".song-item .song-name");
+const author = document.querySelector(".song-item .author");
 const timeSong = document.querySelector(".bar-song .duration-time");
 const musicContent = document.querySelector(".music-content");
 const progressBar = document.querySelector(".progress-bar");
 const currentTimeDisplay = document.querySelector(".current-time");
+const songTitle = document.querySelector(".song-name-lyric");
 
 const listMusic = [
   {
@@ -230,7 +231,7 @@ class UI {
       // listMusic[i] = { ...listMusic[i], ...time };
       songs.insertAdjacentHTML(
         "beforeend",
-        `<div class="info-song">
+        `<div class="song-item">
           <img class="song-small-thumbnail" src=${listMusic[i].thumbnail} alt=""/>
           <div class="left">
             <span class="name-song">${listMusic[i].song}</span>
@@ -247,7 +248,16 @@ class UI {
   loadSong(music) {
     audio.src = music.src;
     lyrics.innerHTML = "";
-    console.log(music);
+    songTitle.innerHTML = "";
+
+    songTitle.insertAdjacentHTML(
+      "beforeend",
+      ` <div class="song-title">
+          <span>${music.song}</span>
+          <span class="song-author">${music.author}</span>
+        </div>`
+    );
+
     lyrics.insertAdjacentHTML(
       "beforeend",
       ` <div class="lyrics">
